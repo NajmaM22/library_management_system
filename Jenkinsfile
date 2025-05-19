@@ -1,12 +1,12 @@
 //jenkins file for the ci pipeline
-//jenkins
+//jenkin
 pipeline {
     agent any
 
     stages {
         stage('Clone repository') {
             steps {
-                git 'https://github.com/NajmaM22/library_management_system.git'
+                git credentialsId: 'github-ssh', url: 'git@github.com:NajmaM22/library_management_system.git'
             }
         }
 
