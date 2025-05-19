@@ -1,16 +1,14 @@
-//jenkins file for the ci pipeline
-//jenkin
 pipeline {
-    agent {
-        docker {
-            image 'php:8.2-cli'   // or any tag you want
-        }
-    }
+    agent any
 
     stages {
-        stage('Run PHPUnit Tests') {
+        stage('Run PHPUnit Tests in Docker') {
             steps {
-                sh 'php phpunit.phar tests'
+                script {
+                    docker.image('php:8.2-cli').inside {
+                        sh 'php phpunit.phar test'
+                    }
+                }
             }
         }
     }
