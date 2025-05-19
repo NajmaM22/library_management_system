@@ -1,4 +1,5 @@
 //jenkins file for the ci pipeline
+//jenkins
 pipeline {
     agent any
 
