@@ -5,11 +5,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Source') {
-            steps {
-                checkout scm
-            }
-        }
+        
 
         stage('Run PHPUnit Tests in Docker') {
             steps {
