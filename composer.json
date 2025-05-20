@@ -1,0 +1,7 @@
+{
+    "name": "najma/library_management",
+    "description": "A php library management system",
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library catalogue system </title>
+</head>
+<body>
+    <header>
+    <h1> Delete a book</h1>
+    <p1> Delete a book from catalogue</p1>
+</header>
+<nav>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="add_book.html">Add a book</a></li>
+        <li><a href="delete_book.html">Delete a book</a></li>
+        <li><a href="edit.html">Edit</a></li>
+        <li><a href="search.html">search for a book</a></li>
+
+    </ul>
+</nav>
+<h2>Delete a book here </h2>
+<form action="deleteBook.php" method="POST">
+    <label> Please neter the book id and title to delete the book:</label>
+    <input type="text" name="ID" required/>
+    <input type="text" name="Title" required/>
+    <input type="submit " name="Delete" required/>
+
+</form>
+</body>
+</html>
