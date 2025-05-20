@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    options {
-        skipDefaultCheckout true
-    }
+    // Just delete the entire `options` block
 
     stages {
         stage('Run PHPUnit Tests in Docker') {
