@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    options {
+        skipDefaultCheckout true
+    }
 
     stages {
         stage('Run PHPUnit Tests in Docker') {
