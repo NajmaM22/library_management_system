@@ -1,0 +1,1 @@
+{"version":1,"defects":{"FileBookManagerTest::testAddBookFailsOnWrongFormat":7},"times":{"FileBookManagerTest::testAddBookSuccess":0.024,"FileBookManagerTest::testAddBookFailsWithMissingFields":0.004,"FileBookManagerTest::testAddBookFailsOnWrongFormat":0.033}}

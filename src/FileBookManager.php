@@ -16,6 +16,36 @@ class FileBookManager {
         return false;
     }
 
+    public function deleteBook($id) {
+        $lines = file($this->file, FILE_IGNORE_NEW_LINES);
+        $updated = array_filter($lines, function($line) use ($id) {
+            return explode(',', $line)[1] !== $id;
+        });
+        return file_put_contents($this->file, implode(PHP_EOL, $updated) . PHP_EOL);
+    }
+
+    public function searchBook($id) {
+        $lines = file($this->file, FILE_IGNORE_NEW_LINES);
+        foreach ($lines as $line) {
+            $parts = explode(',', $line);
+            if ($parts[1] === $id) {
+                return $parts;
+            }
+        }
+        return null;
+    }
+
+    public function editBook($id, $newTitle, $newAuthor) {
+        $lines = file($this->file, FILE_IGNORE_NEW_LINES);
+        foreach ($lines as &$line) {
+            $parts = explode(',', $line);
+            if ($parts[1] === $id) {
+                $line = "$newTitle,$id,$newAuthor";
+            }
+        }
+        return file_put_contents($this->file, implode(PHP_EOL, $lines) . PHP_EOL);
+    }
+
     public function getFileContents() {
         return file_exists($this->file) ? file($this->file, FILE_IGNORE_NEW_LINES) : [];
     }
