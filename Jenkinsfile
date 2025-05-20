@@ -5,6 +5,12 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Run PHPUnit Tests in Docker') {
             steps {
                 script {
@@ -12,7 +18,7 @@ pipeline {
                         sh '''
                             curl -L https://phar.phpunit.de/phpunit-9.phar -o phpunit.phar
                             chmod +x phpunit.phar
-                            ./phpunit.phar --testdox src/test
+                            ./phpunit.phar --testdox test
                         '''
                     }
                 }
