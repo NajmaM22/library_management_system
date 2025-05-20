@@ -3,12 +3,12 @@ require_once 'src/FileBookManager.php';
 $manager = new FileBookManager('bookManagement.txt');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['ID','Title'] ?? '';
+    $id = $_POST['ID'] ?? '';
     if ($id) {
-        $manager->deleteBook($id,$title);
-        echo "Book with ID $id and Title $Title deleted successfully.";
+        $manager->deleteBook($id);
+        echo "Book with ID $id deleted successfully.";
     } else {
-        echo "ID  and title is required.";
+        echo "ID is required.";
     }
 }
 ?>
