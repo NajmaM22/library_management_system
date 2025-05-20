@@ -12,7 +12,8 @@ pipeline {
                         sh '''
                             curl -L https://phar.phpunit.de/phpunit-9.phar -o phpunit.phar
                             chmod +x phpunit.phar
-                            ./phpunit.phar --testdox "C:\Users\najma\OneDrive\library_management\test"
+                            ls -la
+                            ./phpunit.phar --testdox ./test
                         '''
                     }
                 }
