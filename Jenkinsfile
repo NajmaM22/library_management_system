@@ -5,8 +5,6 @@ pipeline {
     }
 
     stages {
-        
-
         stage('Run PHPUnit Tests in Docker') {
             steps {
                 script {
@@ -16,7 +14,6 @@ pipeline {
                             curl -L https://phar.phpunit.de/phpunit-9.phar -o phpunit.phar
                             chmod +x phpunit.phar
                             
-                            # Optional: list files for confirmation
                             echo "Listing contents:"
                             ls -la
                             echo "Listing test directory:"
