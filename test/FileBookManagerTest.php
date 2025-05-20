@@ -24,11 +24,11 @@ class FileBookManagerTest extends TestCase {
         $this->assertCount(0, $this->manager->getFileContents());
     }
 
-    public function testAddBookFailsOnWrongFormat() {
-        $this->manager->addBook("Book C", "003", "Author C");
-        $contents = $this->manager->getFileContents();
-        $this->assertEquals("Wrong Data Format", $contents[0]); // ❌ Intentionally fails
-    }
+   // public function testAddBookFailsOnWrongFormat() {
+       // $this->manager->addBook("Book C", "003", "Author C");
+       // $contents = $this->manager->getFileContents();
+       // $this->assertEquals("Wrong Data Format", $contents[0]); // ❌ Intentionally fails
+   // }
 
     protected function tearDown(): void {
         if (file_exists($this->testFile)) {
