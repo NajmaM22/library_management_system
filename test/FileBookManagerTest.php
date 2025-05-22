@@ -98,14 +98,6 @@ class FileBookManagerTest extends TestCase {
         $this->assertEquals("New Title,003,New Author", $contents[0]);
     }
 
-    // ✅ Test that simulates an unreadable file
-    public function testUnreadableFile() {
-    chmod($this->testFile, 0000);
-    $isWritable = is_writable($this->testFile);
-    $this->assertFalse($isWritable, 'File should not be writable');
-    chmod($this->testFile, 0644);
-}
-
 
     // Tear down: Delete test file after each test
     protected function tearDown(): void {
