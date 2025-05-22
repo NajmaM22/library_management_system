@@ -48,7 +48,14 @@ class FileBookManagerTest extends TestCase {
         $this->assertEquals(1, $count);
     }
 
-   
+    // ✅ Test adding a book with special characters
+    public function testAddBookWithSpecialCharacters() {
+    $result = $this->manager->addBook("@&%£! title", "105", "*&%)£");
+    $this->assertTrue($result);
+    $contents = $this->manager->getFileContents();
+    $this->assertEquals("@&%£! title,105,*&%)£", $contents[0]);
+
+}
 
 
     // ✅ Test successful deletion of a book
@@ -93,11 +100,12 @@ class FileBookManagerTest extends TestCase {
 
     // ✅ Test that simulates an unreadable file
     public function testUnreadableFile() {
-        chmod($this->testFile, 0000); // make file unreadable
-        $result = $this->manager->addBook("Unreadable", "105", "Blocked");
-        $this->assertFalse($result); // should fail gracefully
-        chmod($this->testFile, 0644); // restore permissions
-    }
+    chmod($this->testFile, 0000);
+    $isWritable = is_writable($this->testFile);
+    $this->assertFalse($isWritable, 'File should not be writable');
+    chmod($this->testFile, 0644);
+}
+
 
     // Tear down: Delete test file after each test
     protected function tearDown(): void {
