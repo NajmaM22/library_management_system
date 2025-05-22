@@ -8,21 +8,35 @@ class FileBookManager {
     }
 
     public function addBook($title, $id, $author) {
-        if ($title && $id && $author) {
-            $line = "$title,$id,$author\n";
-            file_put_contents($this->file, $line, FILE_APPEND);
-            return true;
+    if (!is_writable($this->file)) return false;
+
+    if ($title && $id && $author) {
+        $lines = $this->getFileContents();
+        foreach ($lines as $line) {
+            if (explode(',', $line)[1] === $id) return false;
         }
-        return false;
+        return file_put_contents($this->file, "$title,$id,$author\n", FILE_APPEND) !== false;
+    }
+    return false;
+}
+
+
+
+public function deleteBook($id) {
+    $lines = $this->getFileContents();
+    $updated = [];
+
+    foreach ($lines as $line) {
+        $parts = array_map('trim', explode(',', $line));
+        if (count($parts) >= 2 && $parts[1] !== $id) {
+            $updated[] = implode(',', $parts); // normalize format
+        }
     }
 
-    public function deleteBook($id) {
-        $lines = file($this->file, FILE_IGNORE_NEW_LINES);
-        $updated = array_filter($lines, function($line) use ($id) {
-            return explode(',', $line)[1] !== $id;
-        });
-        return file_put_contents($this->file, implode(PHP_EOL, $updated) . PHP_EOL);
-    }
+    return file_put_contents($this->file, $updated ? implode(PHP_EOL, $updated) . PHP_EOL : '');
+
+}
+
 
     public function searchBook($id) {
         $lines = file($this->file, FILE_IGNORE_NEW_LINES);

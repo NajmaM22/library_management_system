@@ -1,15 +1,18 @@
 <?php 
+require_once'src/FileBookManager.php';
+
+
 if(isset($_POST['submit'])){
     $title = $_POST['Title'];
     $id = $_POST['ID'];
     $author = $_POST['Author'];
 
-    if ($title && $id && $author) {
-        $enter = "$title,$ID,$author\n";
-        file_put_contents('bookManagement.txt', $enter, FILE_APPEND);
+    $manager=new FileBookManager();
+    
+ if ($manager->addBook($title, $id, $author)) {
         echo 'Book has been added to the system';
     } else {
-        echo 'Fill in the form fully please';
+        echo 'Failed to add book. Please check for missing fields or duplicate ID.';
     }
 }
 ?>
