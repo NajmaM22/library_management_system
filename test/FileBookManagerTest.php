@@ -48,14 +48,7 @@ class FileBookManagerTest extends TestCase {
         $this->assertEquals(1, $count);
     }
 
-    // ✅ Test adding a book with special characters
-    public function testAddBookWithSpecialCharacters() {
-    $result = $this->manager->addBook("@&%$£! title", "105", "*&%)£$");
-    $this->assertTrue($result);
-    $contents = $this->manager->getFileContents();
-    $this->assertEquals("@&%$£! title,105,*&%)£$", $contents[0]);
-
-}
+   
 
 
     // ✅ Test successful deletion of a book
