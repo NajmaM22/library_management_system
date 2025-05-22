@@ -97,6 +97,23 @@ class FileBookManagerTest extends TestCase {
         $contents = $this->manager->getFileContents();
         $this->assertEquals("New Title,003,New Author", $contents[0]);
     }
+        //intentional failure 
+    public function testFailsOnIncorrectBookFormat() {
+    $this->manager->addBook("Wrong Format", "500", "Author");
+    $contents = $this->manager->getFileContents();
+    $this->assertEquals("Incorrect Format Here", $contents[0]);  // ❌ Expected to fail
+}   
+    public function testFailsSearchMissingBook() {
+    $this->manager->addBook("Invisible Book", "501", "Ghost Author");
+    $book = $this->manager->searchBook("501");
+    $this->assertNull($book);  // ❌ This will fail because book *is* there
+}  
+    public function testFailsEditBookWrongExpectation() {
+    $this->manager->addBook("Old Title", "502", "Old Author");
+    $this->manager->editBook("502", "New Title", "New Author");
+    $contents = $this->manager->getFileContents();
+    $this->assertEquals("Wrong Title,502,Wrong Author", $contents[0]);  // ❌ Fails intentionally
+}
 
 
     // Tear down: Delete test file after each test
